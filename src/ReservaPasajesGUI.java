@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 public class ReservaPasajesGUI {
 
-    public void mostrar(Stage stage) {
+    public void mostrar(Stage stage){
 
         VBox container = new VBox(12);
         container.setPadding(new Insets(25));
@@ -21,9 +21,7 @@ public class ReservaPasajesGUI {
 
         Separator separator = new Separator();
 
-        // --- CAMPOS ---
 
-        // DESTINO
         Label lblDestino = new Label("DESTINO:");
         ComboBox<String> destino = new ComboBox<>();
         destino.getItems().addAll(
@@ -33,22 +31,18 @@ public class ReservaPasajesGUI {
         );
         destino.setPrefWidth(250);
 
-        // FECHA
         Label lblFecha = new Label("FECHA:");
         DatePicker fecha = new DatePicker();
-
-        // HORARIOS
+       
         Label lblHorario = new Label("HORARIOS DISPONIBLES:");
         ComboBox<String> horarios = new ComboBox<>();
         horarios.getItems().addAll("09:00", "12:00", "15:00", "18:00");
 
-        // ASIENTO
         Label lblAsiento = new Label("ASIENTO:");
         ComboBox<String> asiento = new ComboBox<>();
         asiento.getItems().addAll("1A", "2A", "3A", "4A", "5A",
                                   "10B", "11B", "12A", "12B", "15C");
 
-        // PRECIO (se actualiza según destino)
         Label lblPrecio = new Label("PRECIO: $0");
 
         destino.setOnAction(e -> {
@@ -56,7 +50,6 @@ public class ReservaPasajesGUI {
             lblPrecio.setText("PRECIO: $" + precio);
         });
 
-        // --- BOTONES ---
         Button confirmar = new Button("CONFIRMAR RESERVA");
         confirmar.setStyle("-fx-background-color: #0d6efd; -fx-text-fill: white; -fx-font-size: 14; -fx-padding: 10 15;");
         confirmar.setMaxWidth(Double.MAX_VALUE);
@@ -93,10 +86,7 @@ public class ReservaPasajesGUI {
         stage.show();
     }
 
-    // --------------------------
-    // PRECIOS SEGÚN DESTINO
-    // --------------------------
-    private int obtenerPrecio(String destino) {
+    private int obtenerPrecio(String destino){
         switch (destino) {
             case "Calbuco":
             case "Maillen":

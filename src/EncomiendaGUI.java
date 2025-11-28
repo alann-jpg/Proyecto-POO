@@ -1,16 +1,16 @@
+
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-
 import java.util.HashMap;
 import java.util.Map;
 
 public class EncomiendaGUI {
 
     private static final Map<String, Integer> preciosKilo = new HashMap<>();
-    static {
+    static{
         preciosKilo.put("Calbuco", 4000);
         preciosKilo.put("Maillen", 4000);
         preciosKilo.put("Isla Puluqui", 5000);
@@ -24,7 +24,7 @@ public class EncomiendaGUI {
         preciosKilo.put("Quellón", 12000);
     }
 
-    public void mostrar(Stage stage) {
+    public void mostrar(Stage stage){
 
         VBox root = new VBox(10);
         root.setPadding(new Insets(20));
@@ -52,7 +52,6 @@ public class EncomiendaGUI {
         Label lblPrecioKg = new Label("Precio por kg: -");
         Label lblTotal = new Label("PRECIO TOTAL: -");
 
-        // Mensaje con información de disponibilidad de barcos
         Label lblInfo = new Label(
                 "Información: Los pasajeros pueden contactar a la empresa para solicitar una reserva.\n" +
                 "Viajes diarios, horarios sujetos a condiciones meteorológicas.\n" +
@@ -63,7 +62,6 @@ public class EncomiendaGUI {
         );
         lblInfo.setWrapText(true);
 
-        // Actualizar precio automáticamente
         cbDestino.setOnAction(e -> actualizarPrecio(cbDestino, txtPeso, lblPrecioKg, lblTotal));
         txtPeso.setOnKeyReleased(e -> actualizarPrecio(cbDestino, txtPeso, lblPrecioKg, lblTotal));
 
@@ -71,7 +69,7 @@ public class EncomiendaGUI {
         btnConfirmar.setStyle("-fx-background-color: #0d6efd; -fx-text-fill: white; -fx-font-size: 14px;");
         btnConfirmar.setOnAction(e -> {
             if (cbDestino.getValue() == null || txtPeso.getText().isEmpty() ||
-                txtRemitente.getText().isEmpty() || txtDestinatario.getText().isEmpty()) {
+                txtRemitente.getText().isEmpty() || txtDestinatario.getText().isEmpty()){
 
                 alert("Debes completar todos los campos.");
                 return;
@@ -93,7 +91,7 @@ public class EncomiendaGUI {
         stage.show();
     }
 
-    private void actualizarPrecio(ComboBox<String> cbDestino, TextField txtPeso, Label lblPrecioKg, Label lblTotal) {
+    private void actualizarPrecio(ComboBox<String> cbDestino, TextField txtPeso, Label lblPrecioKg, Label lblTotal){
         String destino = cbDestino.getValue();
         if (destino == null) return;
 
@@ -109,7 +107,7 @@ public class EncomiendaGUI {
         }
     }
 
-    private void alert(String msg) {
+    private void alert(String msg){
         Alert a = new Alert(Alert.AlertType.INFORMATION);
         a.setHeaderText(null);
         a.setContentText(msg);

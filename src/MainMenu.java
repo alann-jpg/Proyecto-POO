@@ -8,10 +8,15 @@ import javafx.scene.text.Font;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class MainMenu extends Application {
+public class MainMenu extends Application{
 
     @Override
-    public void start(Stage stage) {
+    public void start(Stage stage){
+        mostrar(stage);
+    }
+
+    public void mostrar(Stage stage){
+        System.out.println(">>> CARGANDO MAINMENU NUEVO <<<");
 
         VBox root = new VBox(20);
         root.setAlignment(Pos.CENTER);
@@ -20,10 +25,6 @@ public class MainMenu extends Application {
 
         Label titulo = new Label("PATAGONIA WELLBOAT");
         titulo.setFont(Font.font("Arial", 24));
-
-        // ------------------------
-        // BOTONES DEL MENÚ
-        // ------------------------
 
         Button btnReserva = new Button("Reserva de Pasajes");
         btnReserva.setStyle("-fx-background-color: #0d6efd; -fx-text-fill: white; -fx-font-size: 16; -fx-padding: 10 20;");
@@ -37,33 +38,34 @@ public class MainMenu extends Application {
         btnBarcos.setStyle("-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 16; -fx-padding: 10 20;");
         btnBarcos.setMaxWidth(250);
 
-        // ------------------------
-        // ACCIONES DE BOTONES
-        // ------------------------
+        Button btnInfo = new Button("Información");
+        btnInfo.setStyle("-fx-background-color: #198754; -fx-text-fill: white; -fx-font-size: 16; -fx-padding: 10 20;");
+        btnInfo.setMaxWidth(250);
+
+        Button btnClientes = new Button("Clientes (CRUD)");
+        btnClientes.setStyle("-fx-background-color: #dc3545; -fx-text-fill: white; -fx-font-size: 16; -fx-padding: 10 20;");
+        btnClientes.setMaxWidth(250);
 
         btnReserva.setOnAction(e -> {
             ReservaPasajesGUI gui = new ReservaPasajesGUI();
             gui.mostrar(stage);
         });
 
-        // Puedes agregar más pantallas luego
-       btnEncomiendas.setOnAction(e -> {
-    new EncomiendaGUI().mostrar(stage);
-});
+        btnEncomiendas.setOnAction(e -> new EncomiendaGUI().mostrar(stage));
 
-        btnBarcos.setOnAction(e -> {
-            System.out.println("Pantalla CRUD Barcos (aún no implementada)");
-        });
+        btnBarcos.setOnAction(e -> System.out.println("Pantalla CRUD Barcos (aún no implementada)"));
 
-        // ------------------------
-        // ESTRUCTURA FINAL
-        // ------------------------
+        btnInfo.setOnAction(e -> new PantallaInformacion().mostrar(stage));
+
+        btnClientes.setOnAction(e -> new PantallaClientes().mostrar(stage));
 
         root.getChildren().addAll(
                 titulo,
                 btnReserva,
                 btnEncomiendas,
-                btnBarcos
+                btnBarcos,
+                btnInfo,
+                btnClientes
         );
 
         Scene scene = new Scene(root, 900, 600);
@@ -72,7 +74,7 @@ public class MainMenu extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args){
         launch();
     }
 }
