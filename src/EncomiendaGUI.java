@@ -1,11 +1,12 @@
-
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import java.util.HashMap;
+
 import java.util.Map;
+import java.util.HashMap;
+
 
 public class EncomiendaGUI {
 
@@ -78,17 +79,19 @@ public class EncomiendaGUI {
         });
 
         Button btnVolver = new Button("VOLVER");
-        btnVolver.setStyle("-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 14px;");
-        btnVolver.setOnAction(e -> stage.close());
+btnVolver.setStyle("-fx-background-color: #6c757d; -fx-text-fill: white; -fx-font-size: 14px;");
+btnVolver.setOnAction(e -> new MainMenu().mostrar(stage));
+
 
         root.getChildren().addAll(
                 titulo, cbDestino, txtPeso, txtRemitente, txtDestinatario, txtDescripcion,
                 lblPrecioKg, lblTotal, lblInfo, btnConfirmar, btnVolver
         );
 
-        stage.setScene(new Scene(root, 500, 700));
-        stage.setTitle("Envío de Encomiendas");
-        stage.show();
+       stage.setScene(new Scene(root, 500, 700));
+stage.setTitle("Envío de Encomiendas");
+stage.setMaximized(true); 
+stage.show();
     }
 
     private void actualizarPrecio(ComboBox<String> cbDestino, TextField txtPeso, Label lblPrecioKg, Label lblTotal){
